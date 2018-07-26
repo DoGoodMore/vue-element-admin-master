@@ -19,7 +19,9 @@ export default {
   },
   methods: {
     handleSetLanguage(lang) {
+      //通过添加对应的item的点击事件来进行默认语言的切换
       this.$i18n.locale = lang
+      //调用全局的语言切换事件
       this.$store.dispatch('setLanguage', lang)
       this.$message({
         message: 'switch language success',

@@ -1,19 +1,30 @@
 <template>
   <el-menu class="navbar" mode="horizontal">
-    <hamburger class="hamburger-container" :toggleClick="toggleSideBar" :isActive="sidebar.opened"></hamburger>
+    <!-- 生成菜单的点击按钮 点击进行菜单的隐藏和显示的对应切换 -->
+    <!-- 传入对应的点击事件和 全局的点击状态来控制 菜单的显示开关以及按钮的旋转样式等 -->
+    <hamburger class="hamburger-container"
+               :toggleClick="toggleSideBar"
+               :isActive="sidebar.opened"></hamburger>
 
+    <!-- 面包屑的显示按钮 通过对应的路由菜单显示当前菜单的路径 -->
     <breadcrumb class="breadcrumb-container"></breadcrumb>
-
+    <!-- 定义右侧的菜单列表 -->
     <div class="right-menu">
+      <!-- 定义错误信息显示的弹窗 -->
       <error-log class="errLog-container right-menu-item"></error-log>
 
+      <!-- 定义右侧菜单中的全屏按钮 外部使用element-ui中的提示组件 鼠标移入显示文字的功能 -->
       <el-tooltip effect="dark" :content="$t('navbar.screenfull')" placement="bottom">
+        <!-- 内部插入的是全屏显示功能的组件 -->
         <screenfull class="screenfull right-menu-item"></screenfull>
       </el-tooltip>
 
+      <!-- 引用语言切换的显示组件 -->
       <lang-select class="international right-menu-item"></lang-select>
 
+      <!-- 定义右侧菜单中的全屏按钮 外部使用element-ui中的提示组件 鼠标移入显示文字的功能 -->
       <el-tooltip effect="dark" :content="$t('navbar.theme')" placement="bottom">
+        <!-- 内部引用的是换肤的颜色编辑器 -->
         <theme-picker class="theme-switch right-menu-item"></theme-picker>
       </el-tooltip>
 

@@ -1,6 +1,11 @@
 <template>
+  <!-- 定义错误信息显示的弹窗组件 -->
+  <!-- 该组件只会在当前有对应的错误信息时候才会显示 -->
   <div v-if="errorLogs.length>0">
+    <!-- 其内部也使用了element-ui中的对应标记的组件 -->
+    <!-- 点击当前的按钮之后打开弹窗并显示详细的错误信息内容 -->
     <el-badge :is-dot="true" style="line-height: 30px;" @click.native="dialogTableVisible=true">
+      <!-- 通过svg标签输出的对应图表作为按钮的内容 -->
       <el-button size="small" type="danger" class="bug-btn">
         <svg t="1492682037685" class="bug-svg" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="1863"
           xmlns:xlink="http://www.w3.org/1999/xlink" width="128" height="128">
@@ -10,6 +15,7 @@
       </el-button>
     </el-badge>
 
+    <!-- 使用了dialog element-UI的组件进行错误的详细信息进行显示 -->
     <el-dialog title="Error Log" :visible.sync="dialogTableVisible" width="80%">
       <el-table :data="errorLogs" border>
         <el-table-column label="Message">
@@ -51,6 +57,7 @@ export default {
   },
   computed: {
     errorLogs() {
+      /* 错误信息读取的是状态管理中 统一定义的错误信息对象 */
       return this.$store.getters.errorLogs
     }
   }

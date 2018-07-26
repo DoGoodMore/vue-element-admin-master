@@ -15,6 +15,8 @@
 </template>
 
 <script>
+  //引入了全屏加载的组件
+  //https://github.com/sindresorhus/screenfull.js
 import screenfull from 'screenfull'
 
 export default {
@@ -40,13 +42,16 @@ export default {
   },
   methods: {
     click() {
+      //判定当前的额浏览器是否支持全屏功能
       if (!screenfull.enabled) {
+        //如果不能输出错误提示信息并返回false
         this.$message({
           message: 'you browser can not work',
           type: 'warning'
         })
         return false
       }
+      //如果支持那么就调用对应的toggle方法
       screenfull.toggle()
     }
   }

@@ -1,4 +1,5 @@
 <template>
+  <!-- 其内部引用的是element-ui的颜色选择器组件 -->
   <el-color-picker
     class="theme-picker"
     popper-class="theme-picker-dropdown"
@@ -8,6 +9,7 @@
 <script>
 
 const version = require('element-ui/package.json').version // element-ui version from node_modules
+//设置默认的颜色
 const ORIGINAL_THEME = '#409EFF' // default color
 
 export default {
@@ -18,8 +20,11 @@ export default {
     }
   },
   watch: {
+    //监听对应的颜色的变化 即用户选择不同的颜色的时候会调用该方法
     theme(val, oldVal) {
+      //如果当前的颜色不是一个字符串 那么就直接返回
       if (typeof val !== 'string') return
+      //将根据用户选择的颜色 对应生成多个同一色系但是不同颜色的颜色值
       const themeCluster = this.getThemeCluster(val.replace('#', ''))
       const originalCluster = this.getThemeCluster(oldVal.replace('#', ''))
       console.log(themeCluster, originalCluster)
